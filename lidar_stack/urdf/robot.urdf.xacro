@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot name="capstone_vehicle" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!--
+    실측 치수 반영 (2026-05-16).
+    - 판 (base_link 시각화): 39.2 cm (앞-뒤) × 25.4 cm (좌-우)
+    - 휠 중심 간 거리: 휠베이스 18.2 cm (전후), 트레드 22.0 cm (좌우)
+      → 운동학 상수: Lx = 0.091 m, Ly = 0.110 m
+    - LiDAR: base_link 기준 (+0.10, 0, +0.11) m, yaw=0 (모터 케이블 = 차량 정면)
+  -->
+
+  <xacro:property name="plate_x" value="0.392"/>
+  <xacro:property name="plate_y" value="0.254"/>
+  <xacro:property name="wheel_base"  value="0.182"/>  <!-- 전후 휠 중심 간 -->
+  <xacro:property name="wheel_track" value="0.220"/>  <!-- 좌우 휠 중심 간 -->
+  <xacro:property name="wheel_radius" value="0.041"/>
+  <xacro:property name="wheel_width" value="0.04"/>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.03" rpy="0 0 0"/>
+      <geometry>
+        <box size="${plate_x} ${plate_y} 0.06"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="laser"/>
+    <origin xyz="0.10 0 0.11" rpy="0 0 0"/>
+  </joint>
+  <link name="laser"/>
+
+  <!-- IMU 는 LiDAR 와 동일 위치에 부착. 자이로는 위치 무관이므로 yaw 측정 OK. -->
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="0.10 0 0.11" rpy="0 0 0"/>
+  </joint>
+  <link name="imu_link"/>
+
+  <xacro:macro name="wheel" params="name x y">
+    <joint name="${name}_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${name}"/>
+      <origin xyz="${x} ${y} 0" rpy="${pi/2} 0 0"/>
+    </joint>
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <!-- A=RL, B=RR, C=FL, D=FR (CLAUDE.md 3절) -->
+  <xacro:wheel name="wheel_A_rl" x="-${wheel_base/2}" y=" ${wheel_track/2}"/>
+  <xacro:wheel name="wheel_B_rr" x="-${wheel_base/2}" y="-${wheel_track/2}"/>
+  <xacro:wheel name="wheel_C_fl" x=" ${wheel_base/2}" y=" ${wheel_track/2}"/>
+  <xacro:wheel name="wheel_D_fr" x=" ${wheel_base/2}" y="-${wheel_track/2}"/>
+
+</robot>

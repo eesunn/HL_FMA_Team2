@@ -1,0 +1,106 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: nav2_rviz_plugins/Navigation 2
+    Name: Navigation 2
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.7
+      Class: rviz_default_plugins/Map
+      Enabled: true
+      Name: Map
+      Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /map
+      Value: true
+    - Class: rviz_default_plugins/LaserScan
+      Enabled: true
+      Name: LaserScan
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Best Effort
+        Value: /scan
+      Value: true
+      Size (m): 0.03
+      Color: 0; 255; 0
+    - Class: rviz_default_plugins/Path
+      Enabled: true
+      Name: GlobalPlan
+      Topic:
+        Value: /plan
+      Color: 0; 255; 255
+    - Class: rviz_default_plugins/Path
+      Enabled: true
+      Name: LocalPlan
+      Topic:
+        Value: /local_plan
+      Color: 255; 0; 255
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Name: TF
+      Marker Scale: 0.3
+      Show Names: true
+    - Class: rviz_default_plugins/RobotModel
+      Enabled: true
+      Name: RobotModel
+      Description Topic:
+        Depth: 5
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: WaypointMarkers
+      Topic:
+        Depth: 1
+        Durability Policy: Transient Local
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /waypoint_markers
+    - Alpha: 0.5
+      Class: rviz_default_plugins/Map
+      Enabled: true
+      Name: GlobalCostmap
+      Topic:
+        Value: /global_costmap/costmap
+      Color Scheme: costmap
+    - Alpha: 0.5
+      Class: rviz_default_plugins/Map
+      Enabled: true
+      Name: LocalCostmap
+      Topic:
+        Value: /local_costmap/costmap
+      Color Scheme: costmap
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: map
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/SetInitialPose
+      Topic:
+        Value: /initialpose
+    - Class: rviz_default_plugins/SetGoal
+      Topic:
+        Value: /goal_pose
+    - Class: rviz_default_plugins/SetGoal
+      Name: 2D Waypoint Pose
+      Topic:
+        Value: /waypoint_pose
+    - Class: rviz_default_plugins/PublishPoint
+      Topic:
+        Value: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 8.0
+      Pitch: 1.5
