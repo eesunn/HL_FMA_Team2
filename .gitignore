@@ -1,0 +1,33 @@
+# ROS2 빌드 산출물
+build/
+install/
+log/
+logs/
+
+# Python 캐시
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 대용량 AI 모델 파일 (Google Drive 등으로 별도 공유)
+*.pt
+*.pth
+*.onnx
+*.weights
+*.engine
+
+# 백업 / 압축 파일
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# IDE / 에디터
+.vscode/
+.idea/
+*.swp
+*~
+
+# 민감 정보
+.env
+*.key
+*.secret
