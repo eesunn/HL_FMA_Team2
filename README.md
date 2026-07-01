@@ -12,6 +12,44 @@
 
 ---
 
+## 형상관리 도구 설치
+
+### Git 설치
+
+```bash
+sudo apt update
+sudo apt install -y git
+
+# 설치 확인
+git --version
+
+# 최초 1회 사용자 정보 설정 (본인 GitHub 계정으로)
+git config --global user.name "GitHub 사용자명"
+git config --global user.email "GitHub 이메일"
+```
+
+### GitKraken 설치
+
+```bash
+# .deb 패키지 다운로드 및 설치
+wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+sudo dpkg -i gitkraken-amd64.deb
+sudo apt-get install -f
+
+# 설치 확인
+gitkraken --version
+
+# 실행
+gitkraken
+```
+
+> 실행 후 **Sign in with GitHub** 로 로그인하면 레포 목록이 자동으로 연동됩니다.
+
+> GitKraken 무료 플랜은 Private 레포 사용이 제한됩니다.
+> GitHub Student Pack(https://education.github.com/pack) 으로 학생 인증 시 Pro 무료 제공.
+
+---
+
 ## 세팅 순서
 
 ### 1. ROS2 Humble 설치
