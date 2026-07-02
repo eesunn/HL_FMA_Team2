@@ -490,7 +490,7 @@ ros2 run camera_stack lane_recovery_node \
   --ros-args -p output_topic:=/cmd_vel -p auto_enable:=true \
   -p base_speed:=0.10 -p traffic_light_stop:=false
 ```
-
+asdasdasdasas
 ---
 
 ### 시나리오 C — 신호등 박스 크기 기반 정지 검증 ★
